@@ -5,14 +5,19 @@ import { semenIcons } from './deck';
     providedIn: 'root'
 })
 export class HandService {
-    hand = signal<string[]>(null);
-    ace = computed<boolean>(() => this.hand().includes('A'));
+    dealer = signal<string>(null);
+    hand = signal<string[]>([]);
     rawHand = computed(() => this.hand().map(card => card.replace(/♠|♣|♥|♦/g, '')));
+    ace = computed<boolean>(() => this.rawHand().includes('A'));
+    aces = computed<boolean>(() => this.rawHand().filter(card => card === 'A').length > 1);
 
     value = computed<number>(() => {
         const sum = this.rawHand().reduce((acc, card) => {
-            if (card === 'A') {
+            if (card === 'A' && !this.aces()) {
                 return acc + 11;
+            }
+            if (card === 'A' && this.aces()) {
+                return acc + 1;
             }
             if (['K', 'Q', 'J'].includes(card)) {
                 return acc + 10;
@@ -30,14 +35,15 @@ export class HandService {
             .map(card => parseInt(card, 10))
             .reduce((acc, card) => acc + card, 0);
 
-        return this.ace() ? `A${num}` : `${num}`;
+        return this.ace() ? `A,${num}` : `${num}`;
     });
 
     reset() {
-        this.hand.set(null);
+        this.hand.set([]);
+        this.dealer.set(null);
     }
 
     addCard(card: string) {
-        this.hand.update(cards => [...this.hand(), card]);
+        this.hand.update(cards => [...cards, card]);
     }
 }

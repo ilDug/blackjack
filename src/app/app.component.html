@@ -1,7 +1,19 @@
-<bj-nav></bj-nav>
+<!-- <bj-nav></bj-nav>
 <h1>BJ</h1>
 
 <div class="card diamonds" style="width: 30%; margin: 1rem">
     <span class="card-value"></span>
     <span class="card-semen">K</span>
+</div> -->
+
+<div>
+    <p>status: {{ status() }}</p>
+    <p>dealer: {{ hs.dealer() }}</p>
+    <p>player: {{ hs.code() }}</p>
+    <p>player: {{ hs.rawHand() }}</p>
+    <p>player: {{ hs.hand() }}</p>
+    <p>player: {{ hs.value() }}</p>
 </div>
+<p></p>
+
+<p><a (click)="hs.reset()">RESET</a></p>

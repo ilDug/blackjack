@@ -1,24 +1,69 @@
-import { K, Q, J, A, TWO, THREE, FOUR, FIVE, SIX, ZERO, NINE, SEVEN, EIGHT, U, I, O, P } from "@angular/cdk/keycodes";
+
+export const valKeyCodes = [
+    'Digit2',
+    'Digit3',
+    'Digit4',
+    'Digit5',
+    'Digit6',
+    'Digit7',
+    'Digit8',
+    'Digit9',
+    'Digit0',
+    'KeyQ',
+    'KeyK',
+    'KeyJ',
+    'KeyA',
+]
+export const semenKeyCodes = [
+    'KeyU',
+    'KeyI',
+    'KeyO',
+    'KeyP'
+]
 
 
-export const keycodesValues = {
-    TWO: 2,
-    THREE: 3,
-    FOUR: 4,
-    FIVE: 5,
-    SIX: 6,
-    SEVEN: 7,
-    EIGHT: 8,
-    NINE: 9,
-    ZERO: 10,
-    J: 10,
-    Q: 10,
-    K: 10,
-    A: [1, 11]
-}
+
+// export const keycodesValues = {
+//     TWO: 2,
+//     THREE: 3,
+//     FOUR: 4,
+//     FIVE: 5,
+//     SIX: 6,
+//     SEVEN: 7,
+//     EIGHT: 8,
+//     NINE: 9,
+//     ZERO: 10,
+//     J: 10,
+//     Q: 10,
+//     K: 10,
+//     A: [1, 11]
+// }
 
 
 // const keyCodesValues = [
+//     TWO,
+//     THREE,
+//     FOUR,
+//     FIVE,
+//     SIX,
+//     SEVEN,
+//     EIGHT,
+//     NINE,
+//     ZERO,
+//     J,
+//     Q,
+//     K,
+//     A
+// ]
+
+// export const semenKeycodes = [
+//     U,
+//     I,
+//     O,
+//     P
+// ]
+
+// export const valueKeycodes = [
 //     TWO,
 //     THREE,
 //     FOUR,
