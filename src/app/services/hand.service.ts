@@ -73,6 +73,9 @@ export class HandService {
     // se la mano è blackjack
     bj = computed<boolean>(() => this.value() === 21 && this.rawHand().length === 2);
 
+    // se la mano è bust
+    bust = computed<boolean>(() => this.value() > 21);
+
 
     // azzera la mano
     reset() {
