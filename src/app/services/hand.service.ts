@@ -5,44 +5,82 @@ import { semenIcons } from './deck';
     providedIn: 'root'
 })
 export class HandService {
+    // la mano del dealer
     dealer = signal<string>(null);
+
+    // la mano del giocatore: array di symbols
     hand = signal<string[]>([]);
-    rawHand = computed(() => this.hand().map(card => card.replace(/♠|♣|♥|♦/g, '')));
-    ace = computed<boolean>(() => this.rawHand().includes('A'));
-    aces = computed<boolean>(() => this.rawHand().filter(card => card === 'A').length > 1);
 
-    value = computed<number>(() => {
-        const sum = this.rawHand().reduce((acc, card) => {
-            if (card === 'A' && !this.aces()) {
-                return acc + 11;
-            }
-            if (card === 'A' && this.aces()) {
-                return acc + 1;
-            }
-            if (['K', 'Q', 'J'].includes(card)) {
-                return acc + 10;
-            }
-            return acc + parseInt(card, 10);
-        }, 0);
+    // la mano del giocatore senza semi (♠|♣|♥|♦): array di symbols
+    private rawHand = computed(() => this.hand().map(card => card.replace(/♠|♣|♥|♦/g, '')));
 
-        return (sum > 21 && this.ace()) ? sum - 10 : sum;
-    });
+    // se la mano contiene un asso
+    private ace = computed<boolean>(() => this.rawHand().includes('A'));
 
-    code = computed<string>(() => {
-        const num = this.rawHand()
+    // numero degl iassi
+    private aces = computed<number>(() => this.rawHand().filter(card => card === 'A').length);
+
+    // somma senza considerare gli assi
+    private valueWOAces = computed<number>(() => {
+        return this.rawHand()
             .filter(card => card !== 'A')
             .map(card => card.replace(/J|Q|K/, '10'))
             .map(card => parseInt(card, 10))
             .reduce((acc, card) => acc + card, 0);
-
-        return this.ace() ? `A,${num}` : `${num}`;
     });
 
+
+    /**
+     * # somma degli assi
+     * 
+     * tutte le combinazioni di 11 o 1 per ogni asso presente
+     * raggruppate in un array di possibili somme.
+     * 
+     * ```11 * (numero di assi - i) + 1 * i```
+     */
+    private acesValues = computed<number[]>(() => {
+        const acesSum: number[] = [];
+        for (let i = 0; i <= this.aces(); i++) {
+            const val = 11 * (this.aces() - i) + 1 * i;
+            acesSum.push(val);
+        }
+        return acesSum;
+    });
+
+
+    // somma dei valori delle carte
+    value = computed<number>(() => {
+        //  ultimo valore dell'array
+        const min = this.acesValues()[this.acesValues().length - 1] ?? 0;
+
+        // somma totale
+        const sum = this.acesValues()
+            .map(val => val + this.valueWOAces())
+            .find(val => val <= 21)
+            ?? // se non trova nessun valore <= 21, prende l'ultimo valore dell'array e lo somma al valore senza assi
+            this.valueWOAces() + min;
+
+        return sum;
+    });
+
+
+    /**
+    * somma dei valori delle carte tranne l'asso indicato separatamente ( A,10 | A,6)
+    * per poter scegliere la riga corrispondente della strategia 
+    */
+    code = computed<string>(() => !this.ace() ? `${this.value()}` : `A, ${this.value() - 11}`);
+
+    // se la mano è blackjack
+    bj = computed<boolean>(() => this.value() === 21 && this.rawHand().length === 2);
+
+
+    // azzera la mano
     reset() {
         this.hand.set([]);
         this.dealer.set(null);
     }
 
+    // aggiunge una carta alla mano
     addCard(card: string) {
         this.hand.update(cards => [...cards, card]);
     }
