@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavComponent } from './core/nav/nav.component';
 import { HandService } from './services/hand.service';
@@ -20,11 +20,16 @@ import { ActionsComponent } from './actions/actions.component';
 export class AppComponent {
 
     hs = inject(HandService);
-    status = signal<string>('DEALER');
+    status = computed(() => this.hs.dealer() ? 'PLAYER' : 'DEALER');
 
     constructor() {
         fromEvent(document, 'keydown')
-            .pipe(keyboardPipe(this.status))
+            .pipe(
+                tap((event: KeyboardEvent) => {
+                    if (event.code === 'Escape') this.hs.reset();
+                }),
+                keyboardPipe,
+            )
             .subscribe((symbol: string) => {
                 //  a seconda dello stato del gioco, aggiorna la mano del giocatore o quella del dealer
                 switch (this.status()) {
@@ -37,13 +42,6 @@ export class AppComponent {
                 }
             });
     }
-
-    // resetta il gioco
-    reset() {
-        this.hs.reset();
-        this.status.set('DEALER');
-    }
-
 
 }
 
