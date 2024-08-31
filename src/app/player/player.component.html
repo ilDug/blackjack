@@ -15,7 +15,7 @@
 
     <div class="flex f-center g-3">
         @for (card of hs.hand(); track $index) {
-        <bj-card [card]="card" style="width: 15%" />
+        <bj-card [card]="card" style="width: 15%" (remove)="removeCard($index)" />
         }
     </div>
 </div>

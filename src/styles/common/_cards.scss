@@ -8,10 +8,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 3px solid #9b9b9b;
+
+    .del{
+        cursor: pointer;
+        color: white;
+        position: absolute;
+        top: 1px;
+        right: 1px;
+        height: 1rem  ;
+        width: 1rem;
+        padding: 0.25rem;
+        background-color: var(--c-error);
+        border-radius: 50%;
+        line-height: 0.5rem;
+    }
+
+    &.covered .del{
+        display: none;
+    }
     
     &.covered{
         background: #4e6db2;
         border: 3px solid #aac3fc;
+
+
     }
 
     .card-suit {

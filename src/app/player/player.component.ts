@@ -8,9 +8,13 @@ import { CardComponent } from '../core/card/card.component';
     standalone: true,
     imports: [CommonModule, CardComponent],
     templateUrl: './player.component.html',
-    styles: ``
+
 })
 export class PlayerComponent {
     hs = inject(HandService);
     status = input.required<string>();
+
+    removeCard(i: number) {
+        this.hs.removeCard(i);
+    }
 }

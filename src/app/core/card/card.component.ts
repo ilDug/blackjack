@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { semenTextMap } from '../../services/deck';
 
 @Component({
@@ -10,6 +10,11 @@ import { semenTextMap } from '../../services/deck';
 })
 export class CardComponent {
     card = input.required<string>();
+    remove = output();
+
+    // indica se mostrare o meno il pulsante REMOVE
+    locked = input<boolean>(false);
+
 
     // the suit of the card
     suit = computed(() => {

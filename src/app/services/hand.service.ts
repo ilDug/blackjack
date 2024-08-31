@@ -89,6 +89,11 @@ export class HandService {
         this.hand.update(cards => [...cards, card]);
     }
 
+    removeCard(index: number) {
+        this.hand.update(cards => [...cards.filter((_, i) => i !== index)]);
+    }
+
+
     // la prossima azione da compiere
     action = computed<string>(() => {
         const d = this.dealer().replace(/♠|♣|♥|♦/g, '').replace(/J|Q|K/, '10');
