@@ -1,6 +1,6 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { semenIcons } from './deck';
-import { BjActionMap, mainStrategy } from './bj.strategy';
+import { BjActionMap, mainStrategy, splitStrategy } from './bj.strategy';
 
 @Injectable({
     providedIn: 'root'
@@ -99,5 +99,13 @@ export class HandService {
         const d = this.dealer().replace(/♠|♣|♥|♦/g, '').replace(/J|Q|K/, '10');
         const actions: BjActionMap = mainStrategy[d] ?? {};
         return actions[this.code()] ?? "";
+    });
+
+    split = computed<boolean>(() => {
+        if (this.rawHand().length !== 2) return false;
+        if (this.rawHand()[0] != this.rawHand()[1]) return false;
+        const couple = this.rawHand()[0];
+        const d = this.dealer().replace(/♠|♣|♥|♦/g, '').replace(/J|Q|K/, '10');
+        return splitStrategy[d][couple] ?? false;
     });
 }

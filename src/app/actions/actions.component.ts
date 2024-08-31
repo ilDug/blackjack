@@ -7,7 +7,7 @@ import { HandService } from '../services/hand.service';
     imports: [],
     templateUrl: './actions.component.html',
     styles: `
-    .action {
+    .action, .split {
         padding: 0.5rem;
         text-align: center;
         min-width: 50%;
@@ -16,6 +16,10 @@ import { HandService } from '../services/hand.service';
         border-width: 3px;
         border-style: solid;
         font-size: 1.5rem;
+    }
+    .split {
+        border-color: var(--c-charm);
+        background-color: var(--c-charm);
     }
     `
 })
@@ -37,18 +41,6 @@ export class ActionsComponent {
             case 'double/hit':
                 return 'var(--c-vice-600)';
 
-            case 'split/hit':
-                return 'var(--c-charm-600)';
-
-            case 'split/stand':
-                return 'var(--c-charm-600)';
-
-            case 'surrender':
-                return 'var(--c-alter-600)';
-
-            case 'insurance':
-                return 'var(--c-warn-600)';
-
             case 'blackjack':
                 return 'var(--c-goal-600)';
         }
@@ -67,18 +59,6 @@ export class ActionsComponent {
 
             case 'double/hit':
                 return 'var(--c-vice)';
-
-            case 'split/hit':
-                return 'var(--c-charm)';
-
-            case 'split/stand':
-                return 'var(--c-charm)';
-
-            case 'surrender':
-                return 'var(--c-alter)';
-
-            case 'insurance':
-                return 'var(--c-warn)';
 
             case 'blackjack':
                 return 'var(--c-goal)';
