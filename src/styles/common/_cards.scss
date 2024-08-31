@@ -1,0 +1,76 @@
+.card {
+    width: auto;
+    aspect-ratio: 2.5/3.5; // 64/89
+    background: #ccc;
+    position: relative;
+    border-radius: 5.5%; //3.5/64*100
+    container-type: size;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #9b9b9b;
+
+    .del{
+        cursor: pointer;
+        color: white;
+        position: absolute;
+        top: 1px;
+        right: 1px;
+        height: 1rem  ;
+        width: 1rem;
+        padding: 0.25rem;
+        background-color: var(--c-error);
+        border-radius: 50%;
+        line-height: 0.5rem;
+    }
+
+    &.covered .del{
+        display: none;
+    }
+    
+    &.covered{
+        background: #4e6db2;
+        border: 3px solid #aac3fc;
+
+
+    }
+
+    .card-suit {
+        position: absolute;
+        top:0; // 5.6%; // 5/89*100 =
+        left: 7.8%; // 5/64*100
+        // width: 16%;
+        font-weight: bolder;
+        font-size: 35cqw;
+    }
+
+    .card-value {
+        position: relative;
+        width: 50%;
+        font-size: 50cqw;
+        text-align: center;
+        font-family: monospace;
+    }
+
+    &.hearts .card-suit::before {
+        content: "♥";
+    }
+    &.diamonds .card-suit::before {
+        content: "♦";
+    }
+    &.clubs .card-suit::before {
+        content: "♣";
+    }
+    &.spades .card-suit::before {
+        content: "♠";
+    }   
+
+    &.hearts,
+    &.diamonds {
+        color: red;
+    }
+    &.clubs,
+    &.spades {
+        color: black;
+    }
+}

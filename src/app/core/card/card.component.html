@@ -1,0 +1,7 @@
+<span class="card {{suit() ?? 'covered'}}">
+    @if (!locked()) {
+        <a class="del" (click)="remove.emit()">&#215;</a>
+    }
+    <span class="card-suit"></span>
+    <span class="card-value">{{value()}}</span>
+</span>
