@@ -40,9 +40,7 @@ export class AppComponent {
             });
     }
 
-    //  azione del giocatore
-
-
+    // resetta il gioco
     reset() {
         this.hs.reset();
         this.status.set('DEALER');
