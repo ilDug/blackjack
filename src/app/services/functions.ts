@@ -27,6 +27,6 @@ export const keyboardPipe = (status: WritableSignal<string>) => pipe(
     // randomly compide the symbols with a semen
     map((symbol: string) => {
         const random = Math.floor(Math.random() * semenIcons.length);
-        return status() === 'PLAYER' ? symbol + semenIcons[random] : symbol;
+        return symbol + semenIcons[random];
     }),
 )

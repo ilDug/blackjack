@@ -178,6 +178,13 @@ const semenText = [
     'diamonds'
 ]
 
+export const semenTextMap = {
+    '♠': 'spades',
+    '♣': 'clubs',
+    '♥': 'hearts',
+    '♦': 'diamonds'
+}
+
 const semenColors = [
     { 'spades': 'black' },
     { 'clubs': 'black' },

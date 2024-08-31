@@ -1,11 +1,12 @@
 import { Component, inject, input } from '@angular/core';
 import { HandService } from '../services/hand.service';
 import { CommonModule } from '@angular/common';
+import { CardComponent } from '../core/card/card.component';
 
 @Component({
     selector: 'bj-player',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, CardComponent],
     templateUrl: './player.component.html',
     styles: ``
 })
