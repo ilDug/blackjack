@@ -1,0 +1,20 @@
+# rete di default per la comunicazione con il proxy,
+# da instanziare solo sui containers che si espongono
+networks:
+
+  default:
+    name: traefik-net
+    external: true
+
+
+services:
+    blackjack:
+      image: ghcr.io/ildug/blackjack:latest
+      container_name: blackjack
+      networks:
+        - default
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.blackjack.rule=Host(`blackjack.dagl.lan`)"
+        - "traefik.http.routers.blackjack.entrypoints=websecure"
+        - "traefik.http.routers.blackjack.tls=true"
