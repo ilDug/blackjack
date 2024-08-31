@@ -3,7 +3,7 @@
 networks:
 
   default:
-    name: traefik-net
+    name: traefik_net
     external: true
 
 
@@ -15,6 +15,6 @@ services:
         - default
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.blackjack.rule=Host(`blackjack.dagl.lan`)"
+        - "traefik.http.routers.blackjack.rule=Host(`blackjack.dag.lan`)"
         - "traefik.http.routers.blackjack.entrypoints=websecure"
         - "traefik.http.routers.blackjack.tls=true"
