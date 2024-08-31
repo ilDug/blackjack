@@ -1,12 +1,13 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { semenIcons } from './deck';
+import { BjActionMap, mainStrategy } from './bj.strategy';
 
 @Injectable({
     providedIn: 'root'
 })
 export class HandService {
     // la mano del dealer
-    dealer = signal<string>(null);
+    dealer = signal<string>('');
 
     // la mano del giocatore: array di symbols
     hand = signal<string[]>([]);
@@ -80,11 +81,18 @@ export class HandService {
     // azzera la mano
     reset() {
         this.hand.set([]);
-        this.dealer.set(null);
+        this.dealer.set('');
     }
 
     // aggiunge una carta alla mano
     addCard(card: string) {
         this.hand.update(cards => [...cards, card]);
     }
+
+    // la prossima azione da compiere
+    action = computed<string>(() => {
+        const d = this.dealer().replace(/♠|♣|♥|♦/g, '')
+        const actions: BjActionMap = mainStrategy[d] ?? {};
+        return actions[this.code()] ?? "";
+    });
 }
