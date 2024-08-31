@@ -1,5 +1,10 @@
 <div class="p-3 flex f-center flex-col g-3">
-    <a (click)="reset.emit()"  class="btn btn-main">reset</a>
+    <a (click)="reset.emit()" class="btn btn-main" style="align-self: flex-end">reset</a>
 
-    <h1>{{hs.action()}}</h1>
+    @if (hs.action()) {
+    <span class="action" style="border-color: {{ bc() }}; background: {{ bg() }}">{{
+        hs.action()
+    }}</span>
+    }
 </div>
+s

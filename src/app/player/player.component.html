@@ -13,7 +13,7 @@
         </span>
     </div>
 
-    <div class="flex f-center g-3">
+    <div class="flex f-center g-3 my-3">
         @for (card of hs.hand(); track $index) {
         <bj-card [card]="card" style="width: 15%" (remove)="removeCard($index)" />
         }

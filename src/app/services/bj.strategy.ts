@@ -1,5 +1,5 @@
 
-export type BjAction = 'hit' | 'stand' | 'double' | 'split' | 'surrender' | 'insurance' | 'blackjack';
+export type BjAction = 'hit' | 'stand' | 'double/hit' | 'double/stand' | 'split/hit' | 'split/stand' | 'surrender' | 'insurance' | 'blackjack';
 export type BjActionMap = { [hand: string]: BjAction }
 export type BjStrategy = { [dealer: string]: BjActionMap }
 
@@ -11,15 +11,15 @@ export const mainStrategy: BjStrategy = {
         "7": "hit",
         "8": "hit",
         "9": "hit",
-        "10": "double",
-        "11": "double",
+        "10": "double/hit",
+        "11": "double/hit",
         "12": "hit",
         "13": "stand",
         "14": "stand",
         "15": "stand",
         "16": "stand",
-        "17": "stand",
-        "18": "stand",
+        "17": "split/stand",
+        "18": "split/hit",
         "19": "stand",
         "20": "stand",
         "21": "stand",
@@ -28,7 +28,7 @@ export const mainStrategy: BjStrategy = {
         "A,4": "hit",
         "A,5": "hit",
         "A,6": "hit",
-        "A,7": "double",
+        "A,7": "double/stand",
         "A,8": "stand",
         "A,9": "stand",
         "A,10": "blackjack",
