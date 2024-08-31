@@ -1,8 +1,14 @@
 <div class="p-3 b-alter">
-    <h2 [ngClass]="{'t-main': status()=='PLAYER'}">PLAYER</h2>
-        <div class="flex f-center g-3">
-            @for (card of hs.hand(); track $index) {
-                <bj-card [card]="card" style="width: 15%;"/>
-            }
+    <span class="pl-3 float-right t-main t-lg">
+        {{ hs.bj() ? 'BLACKJACK' : '' }}
+    </span>
+    <span class="pl-3 float-right ff-mono t-lg">
+        {{ hs.code() }}
+    </span>
+    <h2 [ngClass]="{ 't-main': status() == 'PLAYER' }">PLAYER: {{ hs.value() }}</h2>
+    <div class="flex f-center g-3">
+        @for (card of hs.hand(); track $index) {
+        <bj-card [card]="card" style="width: 15%" />
+        }
     </div>
 </div>

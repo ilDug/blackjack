@@ -69,7 +69,7 @@ export class HandService {
     * somma dei valori delle carte tranne l'asso indicato separatamente ( A,10 | A,6)
     * per poter scegliere la riga corrispondente della strategia 
     */
-    code = computed<string>(() => !this.ace() ? `${this.value()}` : `A, ${this.value() - 11}`);
+    code = computed<string>(() => !this.ace() ? `${this.value()}` : `A,${this.value() - 11}`);
 
     // se la mano è blackjack
     bj = computed<boolean>(() => this.value() === 21 && this.rawHand().length === 2);

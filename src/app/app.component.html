@@ -4,14 +4,3 @@
 <bj-player [status]="status()"/>
 <bj-actions (reset)="reset()"/>
 
-
-
-<div>
-    <p>status: {{ status() }}</p>
-    <p>dealer: {{ hs.dealer() }}</p>
-    <p>player (code): {{ hs.code() }}</p>
-    <p>player (HAND): {{ hs.hand() }}</p>
-    <p>player (value): {{ hs.value() }}</p>
-    <p>is Blackjack? {{ hs.bj() | json}}</p>
-</div>
-
