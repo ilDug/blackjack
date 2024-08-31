@@ -1,0 +1,48 @@
+name: CI/CD
+
+on:
+  release:
+    types: [created]
+
+
+env:
+    REGISTRY: ghcr.io
+    IMAGE: ildug/blackjack
+
+jobs:
+
+  containerize:
+    name: Containerize application and push docker image
+    runs-on: ubuntu-latest
+
+    # solo se la release ha un tag
+    if: github.ref_type == 'tag'
+
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+        
+        - name: Get Semver Tag
+          uses: ilDug/get-tag-action@v1.0.3
+          id: tag
+
+        - name: set up QEMU
+          uses: docker/setup-qemu-action@v3
+
+        - name: Login to GitHub Container Registry
+          uses: docker/login-action@v3
+          with:
+            registry: ${{ env.REGISTRY }}
+            username: ${{ github.repository_owner }}
+            password: ${{ secrets.GITHUB_TOKEN }}
+
+        - name: Build and push Docker image
+          run: |
+            docker builx create --driver docker-container --use
+            docker buildx build . \
+                --file Dockerfile \
+                --platform linux/amd64,linux/arm64 \
+                --tag ${{ env.REGISTRY }}/${{ env.IMAGE }}:${{ steps.tag.outputs.version }} \
+                --tag ${{ env.REGISTRY }}/${{ env.IMAGE }}:latest \
+                --push
+          
