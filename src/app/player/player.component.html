@@ -1,11 +1,18 @@
 <div class="p-3 b-alter">
-    <span class="pl-3 float-right t-main t-lg">
-        {{ hs.bj() ? 'BLACKJACK' : '' }}
-    </span>
-    <span class="pl-3 float-right ff-mono t-lg">
-        {{ hs.code() }}
-    </span>
-    <h2 [ngClass]="{ 't-main': status() == 'PLAYER' }">PLAYER: {{ hs.value() }}</h2>
+    <div class="flex">
+        <h2 [ngClass]="{ 't-main': status() == 'PLAYER' }">PLAYER: {{ hs.value() }}</h2>
+        <span class="grow"></span>
+
+        @if (hs.bj()) {
+        <span class="ml-3 t-goal t-lg"> BLACKJACK </span>
+        } @if (hs.bust()) {
+        <span class="ml-3 t-error t-lg"> BUST </span>
+        }
+        <span class="ml-3 p-1 ff-mono t-lg bg-warn br-3">
+            {{ hs.code() }}
+        </span>
+    </div>
+
     <div class="flex f-center g-3">
         @for (card of hs.hand(); track $index) {
         <bj-card [card]="card" style="width: 15%" />

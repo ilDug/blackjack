@@ -91,7 +91,7 @@ export class HandService {
 
     // la prossima azione da compiere
     action = computed<string>(() => {
-        const d = this.dealer().replace(/♠|♣|♥|♦/g, '')
+        const d = this.dealer().replace(/♠|♣|♥|♦/g, '').replace(/J|Q|K/, '10');
         const actions: BjActionMap = mainStrategy[d] ?? {};
         return actions[this.code()] ?? "";
     });
