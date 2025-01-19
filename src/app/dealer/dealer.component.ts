@@ -5,7 +5,6 @@ import { CardComponent } from '../core/card/card.component';
 
 @Component({
     selector: 'bj-dealer',
-    standalone: true,
     imports: [CommonModule, CardComponent],
     templateUrl: './dealer.component.html',
     styles: ``

@@ -3,7 +3,6 @@ import { semenTextMap } from '../../services/deck';
 
 @Component({
     selector: 'bj-card',
-    standalone: true,
     imports: [],
     templateUrl: './card.component.html',
     styles: ``

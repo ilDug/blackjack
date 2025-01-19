@@ -5,10 +5,8 @@ import { CardComponent } from '../core/card/card.component';
 
 @Component({
     selector: 'bj-player',
-    standalone: true,
     imports: [CommonModule, CardComponent],
-    templateUrl: './player.component.html',
-
+    templateUrl: './player.component.html'
 })
 export class PlayerComponent {
     hs = inject(HandService);

@@ -12,10 +12,9 @@ import { ActionsComponent } from './actions/actions.component';
 
 @Component({
     selector: 'bj-root',
-    standalone: true,
     imports: [RouterOutlet, NavComponent, JsonPipe, DealerComponent, PlayerComponent, ActionsComponent],
     templateUrl: './app.component.html',
-    styles: [],
+    styles: []
 })
 export class AppComponent {
 
