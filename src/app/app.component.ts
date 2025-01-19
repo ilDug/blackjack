@@ -1,10 +1,9 @@
-import { Component, computed, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, computed, inject } from '@angular/core';
+
 import { NavComponent } from './core/nav/nav.component';
 import { HandService } from './services/hand.service';
-import { filter, fromEvent, map, tap } from 'rxjs';
-import { semenIcons, semenKeyCodes, valKeyCodes } from './services/deck';
-import { JsonPipe } from '@angular/common';
+import { fromEvent, tap } from 'rxjs';
+
 import { keyboardPipe } from './services/functions';
 import { DealerComponent } from './dealer/dealer.component';
 import { PlayerComponent } from './player/player.component';
@@ -12,7 +11,7 @@ import { ActionsComponent } from './actions/actions.component';
 
 @Component({
     selector: 'bj-root',
-    imports: [RouterOutlet, NavComponent, JsonPipe, DealerComponent, PlayerComponent, ActionsComponent],
+    imports: [NavComponent, DealerComponent, PlayerComponent, ActionsComponent],
     templateUrl: './app.component.html',
     styles: []
 })
