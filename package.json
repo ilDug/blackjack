@@ -13,10 +13,14 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "electron-forge start",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "electron": "ng build --base-href ./ && electron .",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
+  "main": "main.js",
   "dependencies": {
     "@angular/animations": "^19.1.1",
     "@angular/cdk": "^19.1.0",
@@ -28,6 +32,7 @@
     "@angular/platform-browser": "^19.1.1",
     "@angular/platform-browser-dynamic": "^19.1.1",
     "@angular/router": "^19.1.1",
+    "electron-squirrel-startup": "^1.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
@@ -35,6 +40,15 @@
     "@angular/build": "^19.1.2",
     "@angular/cli": "^19.1.2",
     "@angular/compiler-cli": "^19.1.1",
+    "@electron-forge/cli": "^7.6.0",
+    "@electron-forge/maker-deb": "^7.6.0",
+    "@electron-forge/maker-rpm": "^7.6.0",
+    "@electron-forge/maker-squirrel": "^7.6.0",
+    "@electron-forge/maker-zip": "^7.6.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.6.0",
+    "@electron-forge/plugin-fuses": "^7.6.0",
+    "@electron/fuses": "^1.8.0",
+    "electron": "^34.0.0",
     "typescript": "^5.7.3"
   }
 }
