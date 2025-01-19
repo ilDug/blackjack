@@ -5,7 +5,6 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 
 @Component({
     selector: 'bj-nav',
-    standalone: true,
     imports: [MatToolbarModule, MatIconModule, MatButtonModule],
     templateUrl: './nav.component.html',
     styles: ``

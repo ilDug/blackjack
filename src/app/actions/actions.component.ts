@@ -3,7 +3,6 @@ import { HandService } from '../services/hand.service';
 
 @Component({
     selector: 'bj-actions',
-    standalone: true,
     imports: [],
     templateUrl: './actions.component.html',
     styles: `
