@@ -15,8 +15,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "electron": "ng build --base-href ./ && electron ."
   },
+  "main": "main.js",
   "dependencies": {
     "@angular/animations": "^19.1.1",
     "@angular/cdk": "^19.1.0",
@@ -35,6 +37,7 @@
     "@angular/build": "^19.1.2",
     "@angular/cli": "^19.1.2",
     "@angular/compiler-cli": "^19.1.1",
+    "electron": "^34.0.0",
     "typescript": "^5.7.3"
   }
 }
